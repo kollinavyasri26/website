@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | Farm Monitoring System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="auth-body">
+    <div class="auth-container">
+        <!-- Left side with farmland background -->
+        <div class="auth-left">
+            <div class="auth-content">
+                <h1>FarmGuard</h1>
+                <p>Advanced Animal Detection System for Modern Farmland</p>
+                <button class="read-more-btn">Learn More</button>
+            </div>
+        </div>
+        
+        <!-- Right side with login form -->
+        <div class="auth-right">
+            <div class="auth-form-container">
+                <h2>Welcome Back!</h2>
+                <p class="auth-subtitle">Sign in to your account</p>
+                
+                <!-- Flash Messages -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="flash-message flash-{{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                
+                <form method="POST" class="auth-form">
+                    <div class="input-group">
+                        <input type="text" name="username" placeholder="Username" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" name="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="auth-btn">Login</button>
+                </form>
+                
+                <div class="auth-links">
+                    <p>Don't have an account? <a href="{{ url_for('register') }}">Register Now</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
